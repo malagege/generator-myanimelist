@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>201410新番表</title>
+
+		<!-- Bootstrap CSS -->
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+		<link id="cssmain" href="css/normalGray.css" rel="stylesheet">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>F
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="js/html2canvas.js"></script>
+		<script src="js/main.js"></script>
+		<script src="js/canvas2image.js"></script>
+		<script type="text/javascript" src="js/jquery.blockUI.js"></script>
+	</head>
+	<body>
+	<nav class="navbar navbar-default" role="navigation">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<!--<a class="navbar-brand" href="#">Title</a> -->
+		</div>
+	
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">新番圖表產生器<span class="label label-primary">Beta</span></a></li>
+				<li><a href="https://github.com/malagege/generator-myanimelist" target="_blank">Fork me on Github!!</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><div style="padding:15px;">選擇樣式<select id="selectCSS"></select></div></li>
+				<li><a href="#cssModal" data-toggle="modal">說明</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+	<div class="container wrap">
+		<div id="buttons">
+			<button id="removeAll"type="button" class="btn btn-default">
+			  <span class="glyphicon glyphicon glyphicon-remove-circle"></span> 移除全部
+			</button>
+			<button id="selectAll" type="button" class="btn btn-default">
+			  <span class="glyphicon glyphicon glyphicon glyphicon-ok-circle"></span> 全選
+			</button>
+			<button type="button" id="myButton" data-loading-text="處理中..." data-complete-text="返回" class="btn btn-primary" autocomplete="off">
+			  產生圖片
+			</button>
+			<button type="button" id="reset" class="btn btn-danger">返回</button>
+			<div id="makePNGbtn" class="btn-group">
+			  <button type="button" data-type="png" data-size="1" class="btn btn-default makeimage">產生PNG</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    <span class="caret"></span>
+			    <span class="sr-only">Toggle Dropdown</span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			    <li><a class="makeimage" data-type="png" data-size="1.25" href="#">縮成125%</a></li>
+			    <li><a class="makeimage" data-type="png" data-size="0.75"href="#">縮成75%</a></li>
+			    <li><a class="makeimage" data-type="png" data-size="0.5"href="#">縮成50%</a></li>
+			    <li class="divider"></li>
+			    <li><a href="#">Separated link</a></li>
+			  </ul>
+			</div>
+			<div id="makeJPGbtn" class="btn-group">
+			  <button type="button" data-type="jpg" data-size="1" class="btn btn-default makeimage">產生JPG</button>
+			  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			    <span class="caret"></span>
+			    <span class="sr-only">Toggle Dropdown</span>
+			  </button>
+			  <ul class="dropdown-menu" role="menu">
+			    <li><a class="makeimage" data-type="jpg" data-size="1.25"href="#">縮成125%</a></li>
+			    <li><a class="makeimage" data-type="jpg" data-size="0.75"href="#">縮成75%</a></li>
+			    <li><a class="makeimage" data-type="jpg" data-size="0.5"href="#">縮成50%</a></li>
+			    <li class="divider"></li>
+			    <li><a href="#">Separated link</a></li>
+			  </ul>
+			</div>
+			<button type="button" id="openImg" class="btn btn-default">另開視窗</button>
+		</div>
+	</div>
+			<div class="clearfix"></div>
+		<div class="wrap">
+		<div id="wrap">
+		<!--
+			<div class="inner">
+				<input class="hide" type="checkbox" />
+				<div class="animeImg"></div>
+				<pre class="staff"></pre>
+				<div class="title"></div>
+				<div class="cancel"></div>
+			</div>
+		-->
+		</div>
+		</div>
+		<div class="wrap">
+			<div id="canvas"></div>
+		</div>
+		
+		<div id="image">
+			
+		</div>
+<div id="grid" class="hide">
+	<div class="inner">
+		<div class="title"></div>
+		<input class="hide" type="checkbox" />
+		<div class="animeImg"></div>
+		<pre class="staff"></pre>
+		<div class="cancel" style="display:none"></div>
+	</div>
+</div>
+
+<!-- cssModal -->
+<div class="modal fade" id="cssModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">說明</h4>
+      </div>
+      <div class="modal-body" style="font-size:1.4em;" >
+      <p>
+        generator-myanimelist是基於第三方Web前端<a href="https://github.com/niklasvh/html2canvas">html2canvas.js</a>和<a href="https://github.com/hongru/canvas2image">canvas2image.js</a>來產生圖片，使用者可以把這些圖片上傳到網路上分享自已要追的動畫。
+	  </p>
+	  <p>
+        圖片風格可以透過CSS去做調整，預設CSS是由Bootstrap v3套用，如果有做出不錯的風格(CSS)，可以寄給我(我是CSS苦手)，最後歡迎大家fork這個專案。^^
+		</p>
+        <br />
+		<p>
+        Email:<address>users.noreply.github.com</address>
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+	</body>
+</html>

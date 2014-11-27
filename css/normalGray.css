@@ -1,0 +1,75 @@
+.wrap{
+	margin: 0px auto;
+	width: 1200px;
+}
+
+#wrap{
+	width: 1200px;
+	float: left;
+	background-color: rgba(128,128,128,0.5);
+}
+
+.inner{
+	position: relative;
+	float: left;
+	width: 300px;
+}
+
+.animeImg{
+	float: left;
+	width:150px;
+	height: 200px;
+	background:url('http://fakeimg.pl/300x800');
+	background-repeat:no-repeat !important;
+	background-size: cover  !important;
+	background-position: center  !important;
+}
+
+.inner > table > tbody > tr > td{
+	width: 100%;
+	height: 200px;
+}
+
+.staff{
+	border: none;
+	border-radius:0px;
+	float: left;
+	width:150px;
+	height: 200px;
+	background-color: rgba(128,128,128,0.5);
+	margin-bottom: 0px;
+	white-space:pre-line;
+	padding: 5px 5px 5px 5px;
+}
+
+.title{
+	float: left;
+	width: 300px;
+	height: 50px;
+	background-color: rgb(0,0,0);
+	color: white;
+	font-size: 1.4em;
+	font-weight: blod;
+	padding-top: 3%;
+	text-align: center;
+}
+
+.cancel{
+	position: absolute;
+	/*background: rgb(255,255,0);*/
+	background: url('../images/cancel.jpg');
+	opacity: 0.7;
+	width: 300px;
+	height: 250px;
+}
+
+.dark{
+	background-color: rgb(0,0,0);
+	opacity: 0.8;
+	background-image: none;
+
+}
+
+#buttons{
+	margin: 5px;
+}
